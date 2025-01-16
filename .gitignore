@@ -1,0 +1,8 @@
+/venv/
+/.idea/
+/__pycache__/
+
+__pycache__
+/games/space_invaders/docs/build
+/games/space_invaders/docs/build/**/*
+/games/space_invaders/player_data.json
