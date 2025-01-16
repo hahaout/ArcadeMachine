@@ -3,14 +3,14 @@ import random
 
 from pygame.transform import scale
 
-from games.space_invaders.enemy import Enemy
-from games.space_invaders.life import Life
-from games.space_invaders.states import States
-from games.space_invaders.player import Player
-from games.space_invaders.score import Score
-from games.space_invaders.JSONManager import JSONManager
-from games.space_invaders.JSONHandler import JSONHandler
-from games.space_invaders.boss import Boss
+from enemy import Enemy
+from life import Life
+from states import States
+from player import Player
+from score import Score
+from JSONManager import JSONManager
+from JSONHandler import JSONHandler
+from boss import Boss
 
 
 def display_level(level, screen, name, size):

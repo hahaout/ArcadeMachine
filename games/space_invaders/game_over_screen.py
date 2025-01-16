@@ -1,9 +1,9 @@
 import pygame
 
-from games.space_invaders.states import States
-from games.space_invaders.score import Score
-from games.space_invaders.JSONHandler import JSONHandler
-from games.space_invaders.JSONManager import JSONManager
+from states import States
+from score import Score
+from JSONHandler import JSONHandler
+from JSONManager import JSONManager
 
 
 class GameOverScreen(States):

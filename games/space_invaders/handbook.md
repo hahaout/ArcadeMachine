@@ -1,3 +1,0 @@
-## config
-- you can find all constants here including images, sounds, animations, window setting, etc.....
-- it is advised defining your future constants here and then importing them.

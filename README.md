@@ -30,36 +30,6 @@ But our games are missing some features that would make the game more fun to pla
 
 With these steps completed, you’re all set to start coding and enhancing the games! 🎉
 
-## Documentation Tool (Sphinx)
-### Serving the Documentation Locally
-
-| Step | Action                                                                                       | Details                                                                                |
-|------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
-| 1    | Open a terminal session in the root directory of the project repository.                   | Navigate to the project directory where the documentation files are located.           |
-| 2    | Run the command to build and serve the documentation:                                       | ```invoke serve-docs```                                                                |
-| 3    | Open your favorite browser and navigate to [http://localhost:8000](http://localhost:8000). | The documentation will be hosted locally and updated in real-time if you make changes. |
-
-
-### Benefits of Documentation
-
-| Benefit               | Description                                                                                   |
-|-----------------------|-----------------------------------------------------------------------------------------------|
-| **Code Insights**     | Quickly understand classes, methods, and the project flow.                                    |
-| **Developer Collaboration** | Share knowledge efficiently among team members.                                            |
-| **Error Reduction**   | Clear documentation reduces misunderstandings and bugs during development.                    |
-
-### [For active developers] Customizing the Documentation
-
-If you want to start developing please checkout the [Sphinx-Documentation-Tool here](https://www.sphinx-doc.org/en/master/)
-
-### Customizing the Documentation (For Active Developers)
-| Step | Action                                                                 | Details                                                                                      |
-|------|------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| 1    | Edit the `.rst` files in the `docs` directory.                        | Modify these files to customize or extend the existing documentation.                       |
-| 2    | Add new modules or sections to the documentation by updating `index.rst`. | Update the `index.rst` file to include references to new modules or sections.               |
-| 3    | Rebuild the documentation using the following command:                | ```bash<br>invoke build-docs<br>```                                                         |
-|      | Ensure your documentation stays up to date with the latest code changes. | This keeps your documentation aligned with recent project developments.                     |
-
 
 ### How to run the games
 If you've followed the steps above, you should be able to run the games by running the main.py file in the games folder.

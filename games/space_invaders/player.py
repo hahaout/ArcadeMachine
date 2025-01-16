@@ -1,7 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 
-from games.space_invaders.bullet import Bullet
+from bullet import Bullet
 
 
 class Player(pygame.sprite.Sprite):

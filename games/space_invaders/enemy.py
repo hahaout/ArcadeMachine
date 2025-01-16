@@ -3,7 +3,7 @@ import random
 import pygame
 from pygame import Surface
 
-from games.space_invaders.spritesheet import Spritesheet
+from spritesheet import Spritesheet
 
 
 class Enemy(pygame.sprite.Sprite):

@@ -2,12 +2,12 @@ import pygame as pg
 import os
 import sys
 
-from games.space_invaders.config import config
-from games.space_invaders.control import Control
-from games.space_invaders.game_over_screen import GameOverScreen
-from games.space_invaders.space_invaders import SpaceInvaders
-from games.space_invaders.score_screen import ScoreScreen
-from games.space_invaders.start_screen import StartScreen
+from config import config
+from control import Control
+from game_over_screen import GameOverScreen
+from space_invaders import SpaceInvaders
+from score_screen import ScoreScreen
+from start_screen import StartScreen
 
 
 def main():
