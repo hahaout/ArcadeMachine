@@ -7,7 +7,7 @@ In this handbook you'll learn base understanding and overview of the code you'll
 This Handbook is for the **Pacman** Game.
 
 
-## <img src="images/introduction.png" alt="Alternativtext" style="width:auto; height:auto;">
+## <img src="images/Introduction.png" alt="Alternativtext" style="width:auto; height:auto;">
 <img src="images/pygamelogo.png" alt="Alternativtext" style="width:30%; height:auto;">
 
 #### **What is Pygame?**
@@ -171,7 +171,7 @@ the animation frames etc.
 <br><br><br>
 **For more Pygame specific explanations be sure to check out the Pygame tutorial in Gitlab!** 
 
-## <img src="images/OOStructure.png" alt="Alternativtext" style="width:auto; height:auto;">
+## <img src="images/OOstructure.png" alt="Alternativtext" style="width:auto; height:auto;">
 ####  Objects
 In object-oriented programming a group of related variables and functions get combined in Units. This is called the **object**.<br>
 In Python, objects are instances of a class, so you need to create a class in order to create an object. <br>
