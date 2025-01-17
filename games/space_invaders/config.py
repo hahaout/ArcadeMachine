@@ -8,7 +8,7 @@ config = {
     },
     # Fonts
     "fonts": {
-        "font_path": "games/space_invaders/assets/font/ArcadeClassic.ttf",
+        "font_path": "assets/font/ArcadeClassic.ttf",
         "font_size_large": 36,
         "font_size_small": 20,
         "font_size_initial": 12,
@@ -27,19 +27,19 @@ config = {
     },
     # Images
     "images": {
-        "background_image_path": "games/space_invaders/assets/graphics/Space_Sprites/Space_1.png",
-        "bullet_image_path": "games/space_invaders/assets/graphics/bullet.png",
-        "life_image_path": "games/space_invaders/assets/graphics/heart16.png",
-        "enemy_sheet_path": "games/space_invaders/assets/graphics/enemy_sheet.png",
-        "explosions_sheet_path": "games/space_invaders/assets/graphics/PC_Computer_Spelunky_Classic_Explosion.png",
-        "player_image_path": "games/space_invaders/assets/graphics/ship1.png",
+        "background_image_path": "assets/graphics/Space_Sprites/Space_1.png",
+        "bullet_image_path": "assets/graphics/bullet.png",
+        "life_image_path": "assets/graphics/heart16.png",
+        "enemy_sheet_path": "assets/graphics/enemy_sheet.png",
+        "explosions_sheet_path": "assets/graphics/PC_Computer_Spelunky_Classic_Explosion.png",
+        "player_image_path": "assets/graphics/ship1.png",
     },
     # Sounds
     "sounds": {
-        "game_over_sound_path": "games/space_invaders/assets/audio/gameover.mp3",
-        "bullet_sound_path": "games/space_invaders/assets/audio/laser1.mp3",
-        "explosion_sound_path": "games/space_invaders/assets/audio/hit.mp3",
-        "life_sound_path": "games/space_invaders/assets/audio/add_life.mp3",
+        "game_over_sound_path": "assets/audio/gameover.mp3",
+        "bullet_sound_path": "assets/audio/laser1.mp3",
+        "explosion_sound_path": "assets/audio/hit.mp3",
+        "life_sound_path": "assets/audio/add_life.mp3",
     },
     # Enemy Attributes
     "enemy_attributes": {"enemy_speed_y": 0.75, "normal_enemy_scale": (50, 50)},
