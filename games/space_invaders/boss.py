@@ -2,7 +2,7 @@ import pygame
 import random
 from bullet import Bullet
 from enemy import Enemy
-
+from score import Score
 
 class Boss(Enemy):
     """
@@ -13,10 +13,18 @@ class Boss(Enemy):
 
     # TODO: Challange05 Task01 Complete the constructor
     def __init__(self, pos, image, constraints, rank, settings, speed_y=0):
+        print("Boss spawn success")
+        super().__init__(pos,image,constraints,speed_y,rank)
         self.settings = settings
         self.bullets = pygame.sprite.Group()
-        self.image = pygame.transform.scale(self.image, (100, 100))
+        self.image = pygame.transform.scale(self.image, (300, 300))
         self.rect = self.image.get_rect(center=pos)
+
+        self.speed_x = 1
+        self.health = rank*10
+        self.last_shoot_time = 0
+        self.shoot_cooldown = 5
+        self.bullets = pygame.sprite.Group()
 
     # TODO: Challange05 Task01 define behavior
     def move(self):
@@ -24,11 +32,24 @@ class Boss(Enemy):
         Moves the boss left and right within screen boundaries.
         Reverses direction when hitting the boundaries.
         """
+        #screen_width = self.settings.get("general").get("window_height")
+        if self.rect.left <= 0 or self.rect.right >= self.constraints[1]:
+            self.speed_x *= -1
 
     def shoot(self):
         """
         Fires bullets downward at intervals controlled by a cooldown timer.
         """
+        curr_time = pygame.time.get_ticks()
+        boss_position = ((self.rect.left + self.rect.right)//2,(self.rect.top + self.rect.bottom)//2)
+        bullet_image_path = self.settings.get("images").get("bullet_image_path")
+        if curr_time - self.last_shoot_time > self.shoot_cooldown:
+            bullet = Bullet(boss_position,5,bullet_image_path,None)
+            self.bullets.add(bullet)
+            self.last_shoot_time = curr_time
+        
+        self.bullets.update()
+            
 
     def update(self, settings, score):
         """
@@ -37,6 +58,12 @@ class Boss(Enemy):
         Args:
             settings (dict): Game settings dictionary with screen dimensions and other configurations.
         """
+        if not self.dead:
+            self.shoot()
+            self.move()
+        else:
+            self.kill()
+
 
     def draw_health_bar(self, surface):
         """

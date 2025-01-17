@@ -46,6 +46,7 @@ class SpaceInvaders(States):
         self.screen = screen
         self.settings = settings
         self.initialize_game_state()
+        self.boss = False
 
         # JSON
         file_path = "./player_data.json"
@@ -111,10 +112,11 @@ class SpaceInvaders(States):
         if Enemy.no_enemies(enemies=self.enemies):
             self.player.bullets.empty()
             if self.player.level == 1:
+                print("Boss spawn")
                 spawned_enemies = Enemy.spawn(
                     wave_length=self.wave_length,
                     rank=self.player.level,
-                    image=self.preload_images[("enemy_1")],
+                    image=self.preload_images[("enemy_1")]
                 )
                 self.enemies.add(*spawned_enemies)
             else:
