@@ -33,3 +33,4 @@ build/
 
 docs/build
 player_data.json
+config.py

@@ -18,7 +18,7 @@ class Player(pygame.sprite.Sprite):
         :param settings:
         """
         super().__init__()
-        self.level = 1
+        self.level = 10
         self.settings = settings
         player_image = pygame.image.load(
             self.settings.get("images").get("player_image_path")
@@ -57,7 +57,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.y -= self.speed
         if keys[pygame.K_DOWN] ==True and self.rect.bottom<height:
             self.rect.y += self.speed
-        
+
         player_coordinate = ((self.rect.left + self.rect.right)//2,(self.rect.top + self.rect.bottom)//2)
         bullet_path = self.settings.get("images").get("bullet_image_path")
         bullet_sound_path = self.settings.get("sounds").get("bullet_sound_path")
@@ -67,7 +67,7 @@ class Player(pygame.sprite.Sprite):
             self.bullets.add(bullet)
             self.last_shot_time = curr_shoot_time
 
-        self.bullets.update()
+        self.bullets.update(boss = False)
 
     # TODO: Challenge 01 Task 02
     def shoot(self):

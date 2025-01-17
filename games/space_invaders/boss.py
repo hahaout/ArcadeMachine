@@ -21,9 +21,9 @@ class Boss(Enemy):
         self.rect = self.image.get_rect(center=pos)
 
         self.speed_x = 1
-        self.health = rank*10
+        self.health = rank * 10
         self.last_shoot_time = 0
-        self.shoot_cooldown = 5
+        self.shoot_cooldown = 300
         self.bullets = pygame.sprite.Group()
 
     # TODO: Challange05 Task01 define behavior
@@ -41,15 +41,16 @@ class Boss(Enemy):
         Fires bullets downward at intervals controlled by a cooldown timer.
         """
         curr_time = pygame.time.get_ticks()
-        boss_position = ((self.rect.left + self.rect.right)//2,(self.rect.top + self.rect.bottom)//2)
+        boss_position = ((self.rect.left + self.rect.right)//2, (self.rect.top + self.rect.bottom)//2)
         bullet_image_path = self.settings.get("images").get("bullet_image_path")
-        if curr_time - self.last_shoot_time > self.shoot_cooldown:
-            bullet = Bullet(boss_position,5,bullet_image_path,None)
+        bullet_sound_path = self.settings.get("sounds").get("bullet_sound_path")
+        if curr_time - self.last_shoot_time >= self.shoot_cooldown:
+            bullet = Bullet(boss_position,5,bullet_image_path,bullet_sound_path)
             self.bullets.add(bullet)
             self.last_shoot_time = curr_time
-        
-        self.bullets.update()
-            
+
+        self.bullets.update(boss = True)
+
 
     def update(self, settings, score):
         """

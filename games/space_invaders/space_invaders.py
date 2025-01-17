@@ -46,7 +46,6 @@ class SpaceInvaders(States):
         self.screen = screen
         self.settings = settings
         self.initialize_game_state()
-        self.boss = False
 
         # JSON
         file_path = "./player_data.json"
@@ -76,6 +75,7 @@ class SpaceInvaders(States):
 
         # Preload and scale all enemy images to avoid lag during gameplay
         self.preload_images = Enemy.preload_all_images(settings=self.settings)
+        self.boss_exist = False
 
     def startup(self, **persistent):
         """
@@ -136,6 +136,22 @@ class SpaceInvaders(States):
 
 
         # TODO Challenge06: Spawn Boss after level 10
+        if self.player.level >= 10:
+           if not self.boss_exist:
+                screen_width, screen_height = pygame.display.get_surface().get_size()
+                boss_width = 50
+                boss_x = random.randrange(0, screen_width - boss_width)
+                boss_y = random.randrange(-10, 30)
+
+                self.boss = Boss(
+                    pos=(boss_x, boss_y),
+                    image=self.preload_images[("boss_enemy")],
+                    constraints=(screen_width, screen_height),
+                    settings = self.settings,
+                    rank=self.player.level+2
+                )
+                self.enemies.add(self.boss)
+                self.boss_exist = True
 
         # Handle enemy-bullet collision
         enemy_hit_map = pygame.sprite.groupcollide(
@@ -203,6 +219,7 @@ class SpaceInvaders(States):
         self.score.draw(score_text, score_rect)
         self.enemies.draw(self.screen)
         self.player.bullets.draw(self.screen)
+        self.boss.bullets.draw(self.screen)
         self.lives.draw(self.screen)
         self.screen.blit(self.player.image, self.player.rect)
 

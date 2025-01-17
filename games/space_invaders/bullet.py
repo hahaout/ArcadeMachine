@@ -23,14 +23,20 @@ class Bullet(pygame.sprite.Sprite):
         self.sound = pygame.mixer.Sound(sound_path)
         self.sound.play()
 
-    def update(self, boss=None):
+    def update(self, boss):
         """
         Updates the bullets position. Removes it if it is off the screen.
 
         """
-
-        self.rect.y -= self.speed  # Move bullet upwards
-        if (
-            self.rect.top > pygame.display.get_surface().get_height()
-        ):  # Kill bullet when it leaves the screen
-            self.kill()
+        if boss == True:
+            self.rect.y += self.speed
+            #if (
+            #    self.rect.bottom < pygame.display.get_surface().get_height()
+            #):  # Kill bullet when it leaves the screen
+            #    self.kill()
+        else:
+            self.rect.y -= self.speed  # Move bullet upwards
+            if (
+                self.rect.top > pygame.display.get_surface().get_height()
+            ):  # Kill bullet when it leaves the screen
+                self.kill()
