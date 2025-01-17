@@ -46,7 +46,7 @@ class Player(pygame.sprite.Sprite):
         keys = pygame.key.get_pressed()
         width = self.settings.get("general").get("window_width")
         height = self.settings.get("general").get("window_height")
-        print(width,height)
+        #print(width,height)
         #print(self.rect.left,self.rect.right)
         # TODO:Challange01TASK01 Move player and shoot bullets
         if keys[pygame.K_LEFT] ==True and self.rect.left >0:
@@ -58,9 +58,14 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_DOWN] ==True and self.rect.bottom<height:
             self.rect.y += self.speed
         
-        #player_coordinate = (self.rect.x,self.rect.top)
-        #bullet = Bullet(player_coordinate,self.speed,)
-
+        player_coordinate = ((self.rect.left + self.rect.right)//2,(self.rect.top + self.rect.bottom)//2)
+        bullet_path = self.settings.get("images").get("bullet_image_path")
+        bullet_sound_path = self.settings.get("sounds").get("bullet_sound_path")
+        curr_shoot_time = pygame.time.get_ticks()
+        if keys[pygame.K_SPACE] == True and curr_shoot_time-self.last_shot_time>=self.shoot_cooldown:
+            bullet = Bullet(player_coordinate,self.speed,bullet_path,bullet_sound_path)
+            self.bullets.add(bullet)
+            self.last_shot_time = curr_shoot_time
 
         self.bullets.update()
 
