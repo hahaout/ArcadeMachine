@@ -44,6 +44,7 @@ class Player(pygame.sprite.Sprite):
         """
         # Move the player
         keys = pygame.key.get_pressed()
+<<<<<<< HEAD
         width = self.settings.get("general").get("window_width")
         height = self.settings.get("general").get("window_height")
         print(width,height)
