@@ -125,7 +125,7 @@ class Enemy(pygame.sprite.Sprite):
         if self.health <= 0:
             self.dead = True
             self.kill()
-        return self.rank
+        return self.rank, self.dead
 
     def update(self, settings, score):
         """

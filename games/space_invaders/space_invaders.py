@@ -142,7 +142,9 @@ class SpaceInvaders(States):
         #### TODO Challenge Task01: Increase Score
         if enemy_hit_map:
             for enemy in enemy_hit_map:
-                enemy_rank = enemy.handle_enemy_hit()
+                enemy_rank, enemy_dead = enemy.handle_enemy_hit()
+                if enemy_dead == True:
+                    Score.increase_score(self, enemy_rank)
             if Enemy.no_enemies(enemies=self.enemies):
                 self.player.bullets.empty()
 

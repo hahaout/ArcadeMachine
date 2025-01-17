@@ -50,5 +50,7 @@ class Score(pygame.font.Font):
           - this function will be called in the main gameplay state to implement scoring logic
 
         """
+        self.score.value += 100 * enemy_rank
+
 
     # TODO Challenge03: Define decrease_score(parameters) here
