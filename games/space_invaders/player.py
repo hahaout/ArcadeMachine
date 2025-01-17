@@ -44,13 +44,13 @@ class Player(pygame.sprite.Sprite):
         """
         # Move the player
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
-            self.rect.left -= self.speed
-        if keys[pygame.K_RIGHT]:
-            self.rect.right += self.speed
-        if keys[pygame.K_UP]:
+        if keys[pygame.K_LEFT] ==True and self.rect.left >0:
+                self.rect.x -= self.speed
+        if keys[pygame.K_RIGHT] ==True and self.rect.right <width:
+            self.rect.x += self.speed
+        if keys[pygame.K_UP] ==True and self.rect.top >0:
             self.rect.y -= self.speed
-        if keys[pygame.K_DOWN]:
+        if keys[pygame.K_DOWN] ==True and self.rect.bottom<height:
             self.rect.y += self.speed
         # TODO:Challange01TASK01 Move player and shoot bullets
 
