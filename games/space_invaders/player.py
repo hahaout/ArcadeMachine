@@ -45,7 +45,7 @@ class Player(pygame.sprite.Sprite):
         # Move the player
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] ==True and self.rect.left >0:
-                self.rect.x -= self.speed
+            self.rect.x -= self.speed
         if keys[pygame.K_RIGHT] ==True and self.rect.right <width:
             self.rect.x += self.speed
         if keys[pygame.K_UP] ==True and self.rect.top >0:
