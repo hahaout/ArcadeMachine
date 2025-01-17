@@ -110,12 +110,28 @@ class SpaceInvaders(States):
         ####TODO Challenge02: Spawn Dynamic Enemies
         if Enemy.no_enemies(enemies=self.enemies):
             self.player.bullets.empty()
-            spawned_enemies = Enemy.spawn(
-                wave_length=self.wave_length,
-                rank=1,
-                image=self.preload_images[("enemy_1")],
-            )
-            self.enemies.add(*spawned_enemies)
+            if self.player.level == 1:
+                spawned_enemies = Enemy.spawn(
+                    wave_length=self.wave_length,
+                    rank=self.player.level,
+                    image=self.preload_images[("enemy_1")],
+                )
+                self.enemies.add(*spawned_enemies)
+            else:
+                rand_num = random.randint(3,self.wave_length)
+                spawned_weak_enemies = Enemy.spawn(
+                    wave_length=rand_num,
+                    rank=self.player.level,
+                    image=self.preload_images[(f"enemy_{self.player.level}")],
+                )
+                self.enemies.add(*spawned_weak_enemies)
+                spawned_strong_enemies = Enemy.spawn(
+                    wave_length=self.wave_length-rand_num,
+                    rank=self.player.level+1,
+                    image=self.preload_images[(f"enemy_{self.player.level+1}")],
+                )
+                self.enemies.add(*spawned_strong_enemies)
+
 
         # TODO Challenge06: Spawn Boss after level 10
 

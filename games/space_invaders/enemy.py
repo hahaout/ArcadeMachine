@@ -44,7 +44,7 @@ class Enemy(pygame.sprite.Sprite):
         self.constraints = constraints
         self.speed_y = enemy_speed_y
         self.rank = rank
-        self.health = 1
+        self.health = rank
         self.dead = False
 
     @staticmethod

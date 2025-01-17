@@ -18,7 +18,7 @@ class Player(pygame.sprite.Sprite):
         :param settings:
         """
         super().__init__()
-        self.level = 1
+        self.level = 5
         self.settings = settings
         player_image = pygame.image.load(
             self.settings.get("images").get("player_image_path")
