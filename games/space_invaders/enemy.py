@@ -2,7 +2,7 @@ import random
 
 import pygame
 from pygame import Surface
-
+from score import Score
 from spritesheet import Spritesheet
 
 
@@ -144,6 +144,8 @@ class Enemy(pygame.sprite.Sprite):
         # Remove enemy if it moves off-screen
         if self.rect.top > settings.get("general").get("window_height"):
             self.kill()
+            Score.decrease_score(score,self.rank)
+
 
     def move(self):
         """

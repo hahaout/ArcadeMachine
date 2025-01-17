@@ -54,3 +54,8 @@ class Score(pygame.font.Font):
 
 
     # TODO Challenge03: Define decrease_score(parameters) here
+    def decrease_score(self, enemy_rank):
+        """
+        Decrease Score when enemy leave the screen undead
+        """
+        self.value -= 10 * enemy_rank
