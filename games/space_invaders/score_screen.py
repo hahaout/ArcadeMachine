@@ -33,37 +33,37 @@ class ScoreScreen(States):
         :return:
         """
         vertical_spacing = 40
-        position_y_axis = self.screen_rect.centery - self.font_size // 2
+        position_y_axis = self.screen_rect.centery - self.font_size // 2 - 100
 
         # Draw background image
         self.draw(self.background_image, (0, 0))
 
         # TODO Challenge04 Task02 : call the function to get the highscores
-
+        highscores = self.json_manager.get_highscores()
         # TODO: highscore displaying logic Comment this out when Completing Challenge04 Task02 and edit according to pass to your solution
-        # for index, score_entry in enumerate(highscores):
-        #     message = f"{index + 1}. {score_entry['username']} - {score_entry['score']}"
-        #     text, rect = self.make_text(
-        #         message=message,
-        #         color="white",
-        #         position=(self.screen_rect.centerx, position_y_axis),
-        #         font_size=self.font_size,
-        #         font_path=self.font_path,
-        #     )
-        #     self.draw(text, rect)
-        #     position_y_axis += vertical_spacing
+        for index, score_entry in enumerate(highscores):
+             message = f"{index + 1}. {score_entry[0]} - {score_entry[1]}"
+             text, rect = self.make_text(
+                message=message,
+                 color="white",
+                 position=(self.screen_rect.centerx, position_y_axis),
+                 font_size=self.font_size,
+                 font_path=self.font_path,
+             )
+             self.draw(text, rect)
+             position_y_axis += vertical_spacing
 
         # TODO: Given Code Placeholder highscore text Delete when reaching Challenge04
-        placeholder_text, placeholder_rect = self.make_text(
-            message="Scores are not implemented :(",
+        """placeholder_text, placeholder_rect = self.make_text(
+            message="",
             color="white",
             position=(self.screen_rect.centerx, position_y_axis),
             font_size=self.font_size,
             font_path=self.font_path,
         )
 
-        self.draw(placeholder_text, placeholder_rect)
-
+        self.draw(placeholder_text, placeholder_rect)"""
+        
         # Draw exit text
         position_y_axis += 250
         exit_text, exit_rect = self.make_text(

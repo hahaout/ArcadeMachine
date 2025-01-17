@@ -1,6 +1,5 @@
 import json
 
-
 class JSONManager:
     """
     For directly accessing JSON files.
@@ -74,8 +73,14 @@ class JSONManager:
         data = self.handler.read_json()
 
         # Convert scores to integers where applicable
+        all_score = []
         for entry in data:
             score = entry.get("score", 0)
+            name = entry.get("username", 0)
             # TODO: convert scores
+            all_score.append([name,int(score)])
 
         # TODO: Bubble Sort the data
+        all_sorted_score= sorted(all_score,key= lambda x:x[1], reverse=True)
+        #print(all_sorted_score)
+        return all_sorted_score[:top_x]
