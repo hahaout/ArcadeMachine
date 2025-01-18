@@ -146,7 +146,6 @@ class Enemy(pygame.sprite.Sprite):
             self.kill()
             Score.decrease_score(score,self.rank)
 
-
     def move(self):
         """
         Move the enemy vertically based on its speed.

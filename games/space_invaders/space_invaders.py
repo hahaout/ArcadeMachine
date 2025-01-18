@@ -139,16 +139,17 @@ class SpaceInvaders(States):
         if self.player.level >= 10:
            if not self.boss_exist:
                 screen_width, screen_height = pygame.display.get_surface().get_size()
-                boss_width = 50
-                boss_x = random.randrange(0, screen_width - boss_width)
-                boss_y = random.randrange(-10, 30)
+                boss_width = 30
+                # fix x to make it move
+                boss_x = screen_width // 2
+                boss_y = 100
 
                 self.boss = Boss(
                     pos=(boss_x, boss_y),
                     image=self.preload_images[("boss_enemy")],
                     constraints=(screen_width, screen_height),
                     settings = self.settings,
-                    rank=self.player.level+2
+                    rank=self.player.level
                 )
                 self.enemies.add(self.boss)
                 self.boss_exist = True
@@ -162,7 +163,7 @@ class SpaceInvaders(States):
             for enemy in enemy_hit_map:
                 enemy_rank, enemy_dead = enemy.handle_enemy_hit()
                 if enemy_dead == True:
-                    Score.increase_score(self, enemy_rank)
+                    Score.increase_score(self.score, enemy_rank)
             if Enemy.no_enemies(enemies=self.enemies):
                 self.player.bullets.empty()
 
@@ -185,14 +186,29 @@ class SpaceInvaders(States):
             )
 
         ###TODO: Challenge 06 Handle Player-BossBullet Collision
+        if self.boss_exist == True:
+        # Handle enemy-player collision
+            player_hit_map = pygame.sprite.spritecollide(self.player, self.boss.bullets, True)
+            if player_hit_map:
+                self.player.take_life()
+                # Update life icons using the Life class's update method
+                Life.update_lives_group(
+                    self.lives,
+                    self.player.lives,
+                    self.settings.get("images").get("life_image_path"),
+                )
 
         ###TODO: Challenge 06 endgame after Boss dead
         # TODO: Comment this out when you reach Challenge 06
-        # if self.boss.dead:
-        #     self.settings.get("tracking_utilis").update(
-        #         {"score": int(self.score.value)}
-        #     )
-        #     self.manager.update_entry("score", self.score.value)
+        if self.boss.dead:
+            self.boss.bullets.empty()
+            self.boss_exist = False
+            self.settings.get("tracking_utilis").update(
+               {"score": int(self.score.value)}
+            )
+            self.manager.update_entry("score", self.score.value)
+            self.done = True
+            self.next = "game_over_screen"
 
         # Check if player is defeated
         if self.player.lives <= 0:
@@ -219,7 +235,6 @@ class SpaceInvaders(States):
         self.score.draw(score_text, score_rect)
         self.enemies.draw(self.screen)
         self.player.bullets.draw(self.screen)
-        self.boss.bullets.draw(self.screen)
         self.lives.draw(self.screen)
         self.screen.blit(self.player.image, self.player.rect)
 
@@ -230,5 +245,8 @@ class SpaceInvaders(States):
             self.settings.get("fonts").get("font_size_initial"),
         )
         ###TODO Challenge06 : Draw Boss Healthbar and bullets
+        if self.boss_exist == True:
+            self.boss.draw_health_bar(self.screen)
+            self.boss.bullets.draw(self.screen)
 
         return self.score

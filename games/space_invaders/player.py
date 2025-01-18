@@ -51,18 +51,18 @@ class Player(pygame.sprite.Sprite):
         # TODO:Challange01TASK01 Move player and shoot bullets
         if keys[pygame.K_LEFT] ==True and self.rect.left >0:
             self.rect.x -= self.speed
-        if keys[pygame.K_RIGHT] ==True and self.rect.right <width:
+        if keys[pygame.K_RIGHT] ==True and self.rect.right < width:
             self.rect.x += self.speed
-        if keys[pygame.K_UP] ==True and self.rect.top >0:
+        if keys[pygame.K_UP] ==True and self.rect.top > 0:
             self.rect.y -= self.speed
-        if keys[pygame.K_DOWN] ==True and self.rect.bottom<height:
+        if keys[pygame.K_DOWN] ==True and self.rect.bottom < height:
             self.rect.y += self.speed
 
-        player_coordinate = ((self.rect.left + self.rect.right)//2,(self.rect.top + self.rect.bottom)//2)
+        player_coordinate = ((self.rect.left + self.rect.right) // 2, (self.rect.top + self.rect.bottom) // 2)
         bullet_path = self.settings.get("images").get("bullet_image_path")
         bullet_sound_path = self.settings.get("sounds").get("bullet_sound_path")
         curr_shoot_time = pygame.time.get_ticks()
-        if keys[pygame.K_SPACE] == True and curr_shoot_time-self.last_shot_time>=self.shoot_cooldown:
+        if keys[pygame.K_SPACE] == True and curr_shoot_time - self.last_shot_time >= self.shoot_cooldown:
             bullet = Bullet(player_coordinate,self.speed,bullet_path,bullet_sound_path)
             self.bullets.add(bullet)
             self.last_shot_time = curr_shoot_time

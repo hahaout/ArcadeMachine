@@ -14,17 +14,18 @@ class Boss(Enemy):
     # TODO: Challange05 Task01 Complete the constructor
     def __init__(self, pos, image, constraints, rank, settings, speed_y=0):
         print("Boss spawn success")
-        super().__init__(pos,image,constraints,speed_y,rank)
+        super().__init__(pos, image, constraints, speed_y, rank)
         self.settings = settings
         self.bullets = pygame.sprite.Group()
-        self.image = pygame.transform.scale(self.image, (300, 300))
+        self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect(center=pos)
 
         self.speed_x = 1
-        self.health = rank * 10
+        self.health = rank * 2
         self.last_shoot_time = 0
-        self.shoot_cooldown = 300
+        self.shoot_cooldown = 900
         self.bullets = pygame.sprite.Group()
+        self.dead = False
 
     # TODO: Challange05 Task01 define behavior
     def move(self):
@@ -33,8 +34,11 @@ class Boss(Enemy):
         Reverses direction when hitting the boundaries.
         """
         #screen_width = self.settings.get("general").get("window_height")
-        if self.rect.left <= 0 or self.rect.right >= self.constraints[1]:
+        # if self.rect.left <= 0 or self.rect.right >= self.constraints[1]:
+        # ?
+        if self.rect.left <= 0 or self.rect.right > self.settings.get("general").get("window_height"):
             self.speed_x *= -1
+        self.rect.x -= self.speed_x
 
     def shoot(self):
         """
@@ -83,3 +87,10 @@ class Boss(Enemy):
             (0, 255, 0),
             (self.rect.x, self.rect.top - 15, bar_width * health_ratio, bar_height),
         )  # Green bar
+
+    def handle_boss_hit(self):
+        self.health -= 1
+        if self.health <= 0:
+            self.dead = True
+            self.kill()
+        return self.rank, self.dead

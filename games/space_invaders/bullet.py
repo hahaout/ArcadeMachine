@@ -30,10 +30,10 @@ class Bullet(pygame.sprite.Sprite):
         """
         if boss == True:
             self.rect.y += self.speed
-            #if (
-            #    self.rect.bottom < pygame.display.get_surface().get_height()
-            #):  # Kill bullet when it leaves the screen
-            #    self.kill()
+            if (
+                self.rect.bottom > pygame.display.get_surface().get_height()
+            ):  # Kill bullet when it leaves the screen
+                self.kill()
         else:
             self.rect.y -= self.speed  # Move bullet upwards
             if (
